@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Aesthetica | User Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .glass {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(12px);
+    }
+    .scroll-area {
+      max-height: 500px;
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: #a855f7 #1a1a1a;
+    }
+    .scroll-area::-webkit-scrollbar {
+      width: 6px;
+    }
+    .scroll-area::-webkit-scrollbar-thumb {
+      background: #a855f7;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-gradient-to-b from-gray-950 to-black text-gray-200">
+
+  <!-- Navbar -->
+  <nav class="glass sticky top-0 z-50 px-6 py-4 flex items-center justify-between shadow-lg">
+    <a href="/user_dash/{{this_user.id}}" 
+       class="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500">
+      Welcome {{this_user.username}}
+    </a>
+    <div class="flex items-center gap-6">
+      <form action="/search" method="get" class="hidden sm:flex">
+        <input type="text" name="q" placeholder="Search..." 
+               class="px-3 py-2 rounded-l-xl bg-gray-900/70 text-gray-200 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-purple-500">
+        <button type="submit" 
+                class="px-4 py-2 rounded-r-xl bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:opacity-90">
+          Search
+        </button>
+      </form>
+      <a href="/login" 
+         class="text-gray-300 hover:text-pink-400 transition">Logout</a>
+    </div>
+  </nav>
+
+  <!-- Content -->
+  <main class="max-w-6xl mx-auto px-6 py-10">
+    <h3 class="text-2xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500 mb-6">
+      Your Shortlisted Jobs
+    </h3>
+
+    <!-- Cards Section -->
+    <div class="scroll-area grid sm:grid-cols-2 lg:grid-cols-3 gap-6 pr-2">
+      {% if details %}
+        {% for ebook in details %}
+        <div class="glass rounded-2xl p-6 shadow-md hover:shadow-purple-500/20 transition">
+          <h4 class="text-lg font-semibold text-white mb-2">{{ebook.name}}</h4>
+          <p class="text-gray-400 text-sm mb-1">ID: {{ebook.id}}</p>
+          <p class="text-gray-400 text-sm mb-3">Author: {{ebook.author}}</p>
+
+          <!-- Meeting link option -->
+          <div class="space-y-3">
+            <a href="/view/{{ebook.name}}/{{this_user.id}}" 
+               class="block w-full text-center px-4 py-2 rounded-xl bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-medium hover:opacity-90 transition">
+              12:00 Pm
+            </a>
+            <a href="https://meet.google.com/" target="_blank"
+               class="block w-full text-center px-4 py-2 rounded-xl bg-gradient-to-r from-green-500 to-emerald-500 text-white font-medium hover:opacity-90 transition">
+              Join Interview Meeting
+            </a>
+          </div>
+        </div>
+        {% endfor %}
+      {% else %}
+        <p class="text-gray-400">No shortlisted books or jobs found.</p>
+      {% endif %}
+    </div>
+  </main>
+
+</body>
+</html>

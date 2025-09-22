@@ -1,0 +1,38 @@
+#create database
+
+>>> from app import *
+>>> db.create_all()
+
+# create
+
+>>> user1 = User(username = "adminn123", email = "admin@user.com", password = "1234", type = "admin")
+>>> db.session.add(user1)
+>>> db.session.commit()
+
+#read
+
+ users = User.query.all()
+>>> users
+[<User 1>, <User 2>]
+>>> users[0]
+<User 1>
+>>> u1 = users[0]
+>>> u1.username
+'admin123'
+
+#update
+
+user3 = User.query.filter_by(username="yash", password = "1234").first()
+>>> user3
+<User 3>
+>>> user3.username = "Rahul"
+>>> db.session.commit()
+>>> user3.email = "rahul@gmail.com"
+>>> db.session.commit()
+
+#Delete
+from app import *
+>>> u1 = User.query.get(3)
+<python-input-1>:1: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+>>> db.session.delete(u1)
+>>> db.session.commit()

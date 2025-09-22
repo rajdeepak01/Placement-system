@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aesthetica Platform</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .glass {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-b from-gray-950 to-black text-gray-200">
+
+  <!-- Header -->
+  <header class="w-full fixed top-0 z-50 glass">
+    <div class="max-w-7xl mx-auto flex justify-between items-center p-4">
+      <div class="text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500">
+        Aesthetica
+      </div>
+      <nav class="hidden md:flex space-x-8 text-gray-300">
+        <a href="#home" class="hover:text-purple-400">Home</a>
+        <a href="#features" class="hover:text-purple-400">Features</a>
+        <a href="#workflow" class="hover:text-purple-400">Workflow</a>
+        <a href="#contact" class="hover:text-purple-400">Contact</a>
+      </nav>
+      <div class="space-x-3">
+        <a href="/login" class="px-4 py-2 rounded-lg glass text-gray-200 hover:text-white hover:bg-purple-600 transition">
+          Login
+        </a>
+        <a href="/register" class="px-4 py-2 rounded-lg bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:opacity-90 transition">
+          Sign Up
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section id="home" class="pt-32 pb-20 text-center">
+    <div class="max-w-4xl mx-auto px-4">
+      <h1 class="text-5xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-500 to-red-400 mb-6">
+        The Future of Campus Placements
+      </h1>
+      <p class="text-lg md:text-xl text-gray-400 mb-8">
+        A centralized, smart, and aesthetic platform for internships & placements.
+      </p>
+      <a href="/register" class="px-6 py-3 rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold hover:opacity-90 transition">
+        Get Started
+      </a>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section id="features" class="py-20">
+    <div class="max-w-7xl mx-auto px-4 text-center">
+      <h2 class="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500 mb-12">
+        Platform Features
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="glass p-6 rounded-2xl shadow-lg hover:shadow-purple-500/30 transition">
+          <img src="https://img.icons8.com/ios/80/ffffff/network.png" class="mx-auto mb-4" alt="">
+          <h3 class="font-semibold text-lg mb-2">Centralized Hub</h3>
+          <p class="text-gray-400">All internships & placements in one sleek dashboard.</p>
+        </div>
+        <div class="glass p-6 rounded-2xl shadow-lg hover:shadow-pink-500/30 transition">
+          <img src="https://img.icons8.com/ios/80/ffffff/approval.png" class="mx-auto mb-4" alt="">
+          <h3 class="font-semibold text-lg mb-2">One-Click Apply</h3>
+          <p class="text-gray-400">Instant applications with your digital profile.</p>
+        </div>
+        <div class="glass p-6 rounded-2xl shadow-lg hover:shadow-purple-500/30 transition">
+          <img src="https://img.icons8.com/ios/80/ffffff/appointment-reminders.png" class="mx-auto mb-4" alt="">
+          <h3 class="font-semibold text-lg mb-2">Smart Alerts</h3>
+          <p class="text-gray-400">Get real-time notifications and never miss deadlines.</p>
+        </div>
+        <div class="glass p-6 rounded-2xl shadow-lg hover:shadow-pink-500/30 transition">
+          <img src="https://img.icons8.com/ios/80/ffffff/timetable.png" class="mx-auto mb-4" alt="">
+          <h3 class="font-semibold text-lg mb-2">Schedule Sync</h3>
+          <p class="text-gray-400">Interviews aligned with academic timetables.</p>
+        </div>
+        <div class="glass p-6 rounded-2xl shadow-lg hover:shadow-purple-500/30 transition">
+          <img src="https://img.icons8.com/ios/80/ffffff/progress-indicator.png" class="mx-auto mb-4" alt="">
+          <h3 class="font-semibold text-lg mb-2">Live Tracking</h3>
+          <p class="text-gray-400">Track progress from application to final offer.</p>
+        </div>
+        <div class="glass p-6 rounded-2xl shadow-lg hover:shadow-pink-500/30 transition">
+          <img src="https://img.icons8.com/ios/80/ffffff/certificate.png" class="mx-auto mb-4" alt="">
+          <h3 class="font-semibold text-lg mb-2">Digital Certificates</h3>
+          <p class="text-gray-400">Automatic feedback & verified certificates.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Workflow -->
+  <section id="workflow" class="py-20 bg-gray-950">
+    <div class="max-w-5xl mx-auto px-4 text-center">
+      <h2 class="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500 mb-12">
+        Smooth Workflow
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div class="glass p-6 rounded-2xl">
+          <div class="text-2xl font-bold text-purple-400 mb-2">1</div>
+          <h3 class="font-semibold">Post</h3>
+          <p class="text-gray-400">Recruiters post opportunities.</p>
+        </div>
+        <div class="glass p-6 rounded-2xl">
+          <div class="text-2xl font-bold text-pink-400 mb-2">2</div>
+          <h3 class="font-semibold">Apply</h3>
+          <p class="text-gray-400">Students apply instantly.</p>
+        </div>
+        <div class="glass p-6 rounded-2xl">
+          <div class="text-2xl font-bold text-purple-400 mb-2">3</div>
+          <h3 class="font-semibold">Approve</h3>
+          <p class="text-gray-400">Faculty validates digitally.</p>
+        </div>
+        <div class="glass p-6 rounded-2xl">
+          <div class="text-2xl font-bold text-pink-400 mb-2">4</div>
+          <h3 class="font-semibold">Track</h3>
+          <p class="text-gray-400">Monitor progress & get certificates.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="py-20 text-center">
+    <h2 class="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-500 to-red-400 mb-6">
+      Join Aesthetica Today
+    </h2>
+    <p class="text-gray-400 mb-8">For students, faculty, and recruiters — one aesthetic platform for all.</p>
+    <a href="/register" class="px-6 py-3 rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold hover:opacity-90 transition">
+      Create Account
+    </a>
+  </section>
+
+  <!-- Footer -->
+  <footer id="contact" class="bg-black text-gray-400 py-8">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
+      <p>© 2025 Aesthetica. All rights reserved.</p>
+      <div class="flex space-x-6">
+        <a href="#" class="hover:text-purple-400">Privacy</a>
+        <a href="#" class="hover:text-purple-400">Terms</a>
+        <a href="mailto:contact@aesthetica.com" class="hover:text-purple-400">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

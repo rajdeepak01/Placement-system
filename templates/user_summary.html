@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Aesthetica | User Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .glass {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(12px);
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-gradient-to-b from-gray-950 to-black text-gray-200">
+
+  <!-- Navbar -->
+ <nav class="glass sticky top-0 z-50 px-6 py-4 flex items-center justify-between shadow-lg">
+    <a href="/user_dash/{{this_user.id}}"
+      class="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500">
+      Welcome {{this_user.username}}
+    </a>
+    <div class="flex items-center gap-6">
+      <a href="/user_dash/{{this_user.id}}" class="text-gray-300 hover:text-purple-400 transition">Home</a>
+      <a href="/user_summary/{{this_user.id}}" class="text-gray-300 hover:text-purple-400 transition">Summary</a>
+      
+      <a href="/user_profile/{{this_user.id}}" class="text-gray-300 hover:text-purple-400 transition">Profile</a>
+      <a href="/login" class="text-gray-300 hover:text-pink-400 transition">Logout</a>
+    </div>
+  </nav>
+
+
+  <!-- Content -->
+  <main class="max-w-6xl mx-auto px-6 py-10 space-y-10">
+
+    <!-- Pie Chart Card -->
+    <div class="glass rounded-2xl p-6 shadow-md hover:shadow-purple-500/20 transition">
+      <h3 class="text-xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500 mb-4">
+        Status of Placement
+      </h3>
+      <div class="flex justify-center">
+        <img src="/static/pie.png" alt="PieChart" class="max-h-80 rounded-lg shadow-md">
+      </div>
+    </div>
+
+    <!-- Bar Chart Card -->
+    <div class="glass rounded-2xl p-6 shadow-md hover:shadow-pink-500/20 transition">
+      <h3 class="text-xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-purple-500 mb-4">
+        Status of Placement
+      </h3>
+      <div class="flex justify-center">
+        <img src="/static/bar.png" alt="BarChart" class="max-h-72 rounded-lg shadow-md">
+      </div>
+    </div>
+
+  </main>
+
+</body>
+</html>

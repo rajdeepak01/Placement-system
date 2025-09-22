@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Aesthetica | Admin Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .glass {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(12px);
+    }
+    .scroll-area {
+      max-height: 250px;
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: #a855f7 #1a1a1a;
+    }
+    .scroll-area::-webkit-scrollbar { width: 6px; }
+    .scroll-area::-webkit-scrollbar-thumb {
+      background: #a855f7;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-gradient-to-b from-gray-950 to-black text-gray-200">
+
+  <!-- Navbar -->
+  <nav class="glass sticky top-0 z-50 px-6 py-4 flex items-center justify-between shadow-lg">
+    <a href="#" 
+       class="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500">
+      Welcome {{this_user.username}}
+    </a>
+
+    <div class="flex items-center gap-6">
+                  <a href="/admin" class="text-gray-300 hover:text-pink-400 transition">Home</a>
+
+      <a href="/add_company" class="text-gray-300 hover:text-pink-400 transition">Add Company</a>
+      <a href="/partners" class="text-gray-300 hover:text-pink-400 transition">Hiring Patners</a>
+
+      <a href="/summary" class="text-gray-300 hover:text-purple-400 transition">Summary</a>
+      <a href="/login" class="text-gray-300 hover:text-pink-400 transition">Logout</a>
+      <!-- Search -->
+      <form action="/search" method="get" class="flex gap-2">
+        <input type="text" name="search" placeholder="Search..."
+               class="px-3 py-2 rounded-lg bg-gray-900/70 text-gray-200 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-purple-500">
+        <select name="key" class="px-2 py-2 rounded-lg bg-gray-900/70 text-gray-200 border border-gray-700">
+          <option selected>Select</option>
+          <option value="user">User</option>
+          <option value="ebook">Jobs</option>
+        </select>
+        <button type="submit" 
+                class="px-4 py-2 rounded-lg bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:opacity-90 transition">
+          Search
+        </button>
+      </form>
+    </div>
+  </nav>
+
+  <!-- Content -->
+  <main class="max-w-7xl mx-auto px-6 py-10 space-y-12">
+
+    <!-- Requested E-books -->
+    <section class="glass rounded-2xl p-6 shadow-md">
+      <h3 class="text-xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500 mb-4">
+        Requested for Placements
+      </h3>
+      <div class="scroll-area">
+        <table class="w-full text-left text-gray-300">
+          <thead class="bg-gray-900/60 text-gray-400">
+            <tr>
+              <th class="px-4 py-2">ID</th>
+              <th class="px-4 py-2">Role</th>
+              <th class="px-4 py-2">Company</th>
+              <th class="px-4 py-2">Username</th>
+              <th class="px-4 py-2">Match Ratio</th>
+              <th class="px-4 py-2 text-center">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for ebook in req_ebooks %}
+            <tr class="border-b border-gray-700/50 hover:bg-gray-800/40 transition">
+              <td class="px-4 py-2">{{ebook.id}}</td>
+              <td class="px-4 py-2">{{ebook.name}}</td>
+              <td class="px-4 py-2">{{ebook.author}}</td>
+              <td class="px-4 py-2">{{ ebook.bearer.username if ebook.bearer else 'N/A' }}</td>
+              <td class="px-4 py-2">{{ ebook.match_ratio * 100 }}%</td>
+              <td class="px-4 py-2 text-center">
+                <a href="/grant/{{ebook.id}}/{{ebook.user_id}}" 
+                   onclick="return confirm('Are you sure you want to Select this student?')"
+                   class="px-4 py-2 rounded-xl bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-medium hover:opacity-90 transition">
+                   Select 
+                </a>
+                <a href="/approve_return/{{ebook.id}}/{{this_user.id}}" 
+                   onclick="return confirm('Are you sure you want to Disqualify this student?')"
+                   class="px-4 py-2 rounded-xl bg-gradient-to-r from-red-500 to-red-500 text-white font-medium hover:opacity-90 transition">
+                  Reject 
+                </a>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Selected Students / Pending E-books -->
+    <section class="glass rounded-2xl p-6 shadow-md">
+      <h3 class="text-xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-purple-500 mb-4">
+        Selected Students
+      </h3>
+      <div class="scroll-area">
+        <table class="w-full text-left text-gray-300">
+          <thead class="bg-gray-900/60 text-gray-400">
+            <tr>
+              <th class="px-4 py-2">ID</th>
+              <th class="px-4 py-2">Role</th>
+              <th class="px-4 py-2">Company</th>
+              <th class="px-4 py-2">Username</th>
+              <th class="px-4 py-2">Match Ratio</th>
+              <th class="px-4 py-2 text-center">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for ebook in pen_ebooks %}
+            <tr class="border-b border-gray-700/50 hover:bg-gray-800/40 transition">
+              <td class="px-4 py-2">{{ebook.id}}</td>
+              <td class="px-4 py-2">{{ebook.name}}</td>
+              <td class="px-4 py-2">{{ebook.author}}</td>
+              <td class="px-4 py-2">{{ ebook.bearer.username if ebook.bearer else 'N/A' }}</td>
+              <td class="px-4 py-2">{{ ebook.match_ratio * 100 }}%</td>
+              <td class="px-4 py-2 text-center">
+                <a href="/approve_return/{{ebook.id}}/{{this_user.id}}" 
+                   onclick="return confirm('Are you sure you want to Disqualify this student?')"
+                   class="px-4 py-2 rounded-xl bg-gradient-to-r from-green-500 to-emerald-500 text-white font-medium hover:opacity-90 transition">
+                  Selected
+                </a>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Stats Cards -->
+    <section class="grid sm:grid-cols-2 lg:grid-cols-5 gap-6">
+      <div class="glass rounded-2xl p-6 text-center shadow-md hover:shadow-purple-500/20 transition">
+        <h5 class="text-gray-400">Users</h5>
+        <h1 class="text-3xl font-bold text-white">{{users}}</h1>
+      </div>
+      <div class="glass rounded-2xl p-6 text-center shadow-md hover:shadow-yellow-500/20 transition">
+        <h5 class="text-gray-400">Applied for jobs</h5>
+        <h1 class="text-3xl font-bold text-white">{{reqs}}</h1>
+      </div>
+      <div class="glass rounded-2xl p-6 text-center shadow-md hover:shadow-green-500/20 transition">
+        <h5 class="text-gray-400">Selected for Role</h5>
+        <h1 class="text-3xl font-bold text-white">{{grant}}</h1>
+      </div>
+      <div class="glass rounded-2xl p-6 text-center shadow-md hover:shadow-cyan-500/20 transition">
+        <h5 class="text-gray-400">Available Jobs</h5>
+        <h1 class="text-3xl font-bold text-white">{{aval}}</h1>
+      </div>
+      <div class="glass rounded-2xl p-6 text-center shadow-md hover:shadow-pink-500/20 transition">
+        <h5 class="text-gray-400">Pending</h5>
+        <h1 class="text-3xl font-bold text-white">{{pen_ebooks_count}}</h1>
+      </div>
+    </section>
+
+    <!-- Create Ebook -->
+    <div class="text-right">
+      <a href="/create-ebook" 
+         class="inline-block px-6 py-3 rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold hover:opacity-90 transition">
+        + Create Jobs
+      </a>
+    </div>
+
+  </main>
+
+</body>
+</html>
